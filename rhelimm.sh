@@ -1,7 +1,5 @@
 #!/bin/bash
 listadiscos=$(lsblk)
-scandisks=$(rescan-scsi-bus.sh)
-echo "Scanning Disks....: $scandisks"
 echo "List Disks : $listadiscos"
 echo "****** Enter disk as example /dev/sdb ******: "
 read
