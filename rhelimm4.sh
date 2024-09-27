@@ -1,3 +1,4 @@
+#!/bin/bash 
 UUID=$(blkid | grep repoimmsql-repoveeamsql |cut -f2 -d'='|cut -f2 -d'"') 
 echo "******Saving /etc/fstab as /etc/fstab.$$******" 
 /bin/cp -p /etc/fstab /etc/fstab.$$ 
