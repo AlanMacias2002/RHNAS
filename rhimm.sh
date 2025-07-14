@@ -10,7 +10,7 @@ mkfs.xfs -b size=4096 -m reflink=1,crc=1 /dev/repoimm/repoveeam
 mkdir /repoveeam
 mount /dev/repoimm/repoveeam /repoveeam
 mkdir /repoveeam/backups
-chown adminbkp:adminbkp /repoveeam/backups
+chown veeamloc:veeamloc /repoveeam/backups
 chmod 700 /repoveeam/backups
 UUID=$(blkid | grep repoimm-repoveeam |cut -f2 -d'='|cut -f2 -d'"')
 echo "******Saving /etc/fstab as /etc/fstab.$$******"
