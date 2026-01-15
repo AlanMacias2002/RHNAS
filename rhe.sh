@@ -44,8 +44,8 @@ lvcreate -l 30%VG --name "${LV_SQL}" "${VG_NAME}"
 # El resto queda libre (~30%) en el VG para crecer despues
 
 echo "=== Formateando XFS ==="
-mkfs.xfs -f -b size=4096 -m reflink=1,crc=1 "/dev/${VG_NAME}/${LV_VEEAM}"
-mkfs.xfs -f -b size=4096 -m reflink=1,crc=1 "/dev/${VG_NAME}/${LV_SQL}"
+mkfs.xfs -f -K -b size=4096 -m reflink=1,crc=1 "/dev/${VG_NAME}/${LV_VEEAM}"
+mkfs.xfs -f -K -b size=4096 -m reflink=1,crc=1 "/dev/${VG_NAME}/${LV_SQL}"
 
 echo "=== Creando puntos de montaje y montando ==="
 mkdir -p "${MP_VEEAM}" "${MP_SQL}"
