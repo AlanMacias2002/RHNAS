@@ -40,11 +40,8 @@ pvcreate -ff -y "${DISK}"
 vgcreate "${VG_NAME}" "${DISK}"
 
 echo "=== Creando LVs con porcentaje del VG ==="
-# 40% para backups normales
 lvcreate -l ${SIZE_VEEAM}%VG --name "${LV_VEEAM}" "${VG_NAME}"
-# 30% para SQL
 lvcreate -l ${SIZE_SQL}%VG --name "${LV_SQL}" "${VG_NAME}"
-# El resto queda libre (~30%) en el VG para crecer despues
 
 echo "=== Formateando XFS ==="
 mkfs.xfs -f -K -b size=4096 -m reflink=1,crc=1 "/dev/${VG_NAME}/${LV_VEEAM}"
@@ -79,3 +76,4 @@ echo "UUID=${UUID_SQL} ${MP_SQL} xfs defaults 1 1" >> /etc/fstab
 echo "=== Listo ==="
 echo "Normal repo : ${MP_VEEAM} ${SIZE_VEEAM}%"
 echo "SQL repo    : ${MP_SQL} ${SIZE_SQL}%"
+echo "*****Recuerda asignarle una contraseña al usuario veeamrepo******"
