@@ -38,9 +38,9 @@ vgcreate "${VG_NAME}" "${DISK}"
 
 echo "=== Creando LVs con porcentaje del VG ==="
 # 40% para backups normales
-lvcreate -L 40%VG --name "${LV_VEEAM}" "${VG_NAME}"
+lvcreate -l 40%VG --name "${LV_VEEAM}" "${VG_NAME}"
 # 30% para SQL
-lvcreate -L 30%VG --name "${LV_SQL}" "${VG_NAME}"
+lvcreate -l 30%VG --name "${LV_SQL}" "${VG_NAME}"
 # El resto queda libre (~30%) en el VG para crecer despues
 
 echo "=== Formateando XFS ==="
