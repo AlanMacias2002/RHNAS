@@ -8,11 +8,6 @@ LV_SQL="repoveeamsql"
 MP_VEEAM="/repoveeam"
 MP_SQL="/repoveeamsql"
 
-echo "=== (Opcional) Re-scan SCSI si existe rescan-scsi-bus.sh ==="
-if command -v rescan-scsi-bus.sh >/dev/null 2>&1; then
-  rescan-scsi-bus.sh || true
-fi
-
 echo "=== Discos detectados (lsblk) ==="
 lsblk
 
