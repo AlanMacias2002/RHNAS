@@ -77,7 +77,5 @@ echo "UUID=${UUID_VEEAM} ${MP_VEEAM} xfs defaults 1 1" >> /etc/fstab
 echo "UUID=${UUID_SQL} ${MP_SQL} xfs defaults 1 1" >> /etc/fstab
 
 echo "=== Listo ==="
-echo "Normal repo : ${MP_VEEAM} (40%VG)"
-echo "SQL repo    : ${MP_SQL} (30%VG)"
-echo "Libre en VG : ~30% para crecer despues con lvextend"
-echo "******Please Add The New Repository with veeamrepo single-use credentials in Veeam Backup & Replication******"
+echo "Normal repo : ${MP_VEEAM} ${SIZE_VEEAM}%"
+echo "SQL repo    : ${MP_SQL} ${SIZE_SQL}%"
