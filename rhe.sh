@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+SIZE_SQL= 30
+SIZE_VEEAM= 40
+
 VG_NAME="repoimm"
 LV_VEEAM="repoveeam"
 LV_SQL="repoveeamsql"
@@ -38,9 +41,9 @@ vgcreate "${VG_NAME}" "${DISK}"
 
 echo "=== Creando LVs con porcentaje del VG ==="
 # 40% para backups normales
-lvcreate -l 40%VG --name "${LV_VEEAM}" "${VG_NAME}"
+lvcreate -l ${SIZE_VEEAM}%VG --name "${LV_VEEAM}" "${VG_NAME}"
 # 30% para SQL
-lvcreate -l 30%VG --name "${LV_SQL}" "${VG_NAME}"
+lvcreate -l ${SIZE_SQL}%VG --name "${LV_SQL}" "${VG_NAME}"
 # El resto queda libre (~30%) en el VG para crecer despues
 
 echo "=== Formateando XFS ==="
@@ -55,8 +58,6 @@ mount "/dev/${VG_NAME}/${LV_SQL}" "${MP_SQL}"
 echo "=== Creando usuario veeamrepo si no existe ==="
 if ! id veeamrepo >/dev/null 2>&1; then
   adduser veeamrepo
-  echo "****** Please Enter veeamrepo Password ******"
-  passwd veeamrepo
 fi
 
 echo "=== Creando carpetas y permisos ==="
