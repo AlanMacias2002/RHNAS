@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-SIZE_SQL= 30
-SIZE_VEEAM= 40
+SIZE_SQL=30
+SIZE_VEEAM=40
 
 VG_NAME="repoimm"
 LV_VEEAM="repoveeam"
