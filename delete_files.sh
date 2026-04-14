@@ -13,7 +13,7 @@ while IFS= read -r FILE; do
     SIZE=$(stat -c %s "$FILE")
     TOTAL_BYTES=$((TOTAL_BYTES + SIZE))
     echo "  $FILE  ($(numfmt --to=iec $SIZE))"
-done < <(find "$BACKUP_DIR" -type f ! -newer <(date -d "$CUTOFF_DATE" +%Y%m%d) 2>/dev/null)
+done < <(find "$BACKUP_DIR" -type f ! -newermt "$CUTOFF_DATE" 2>/dev/null)
 
 echo ""
 echo "Espacio total a liberar: $(numfmt --to=iec $TOTAL_BYTES)"
@@ -21,7 +21,7 @@ echo ""
 
 if [ "$DRY_RUN" = false ]; then
     echo "Quitando inmutabilidad y borrando archivos..."
-    find "$BACKUP_DIR" -type f ! -newer <(date -d "$CUTOFF_DATE" +%Y%m%d) \
+    find "$BACKUP_DIR" -type f ! -newermt "$CUTOFF_DATE" \
         -exec chattr -i {} \; \
         -exec rm -f {} \;
     echo "Listo."
